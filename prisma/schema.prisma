@@ -13,40 +13,42 @@ datasource db {
 model User {
   id String @id @default(auto()) @map("_id") @db.ObjectId
 
-  email    String    @unique
+  email String @unique
   username String
   password String
-  tweets   Tweet[]
-  likes    Like[]
-  commets  Comment[]
+  tweets Tweet[]
+  likes Like[]
+  comments Comment[]
 }
 
 model Tweet {
-  id     String @id @default(auto()) @map("_id") @db.ObjectId
+  id String @id @default(auto()) @map("_id") @db.ObjectId
   userId String @db.ObjectId
 
   content String
-  images  String[]
-  likes   Like[]
+  images String[]
+  likes Like[]
+  comments Comment[]
 
   user User @relation(fields: [userId], references: [id])
 }
 
 model Comment {
-  id     String @id @default(auto()) @map("_id") @db.ObjectId
+  id String @id @default(auto()) @map("_id") @db.ObjectId
   userId String @db.ObjectId
-
   tweetId String @db.ObjectId
+
   content String
 
   user User @relation(fields: [userId], references: [id])
+  tweet Tweet @relation(fields: [tweetId], references: [id])
 }
 
 model Like {
-  id      String @id @default(auto()) @map("_id") @db.ObjectId
-  userId  String @db.ObjectId
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  userId String @db.ObjectId
   tweetId String @db.ObjectId
 
-  user  User  @relation(fields: [userId], references: [id])
+  user User @relation(fields: [userId], references: [id])
   tweet Tweet @relation(fields: [tweetId], references: [id])
 }
