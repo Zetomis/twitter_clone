@@ -1,6 +1,8 @@
 import { Metadata } from "next";
 import { ReactNode } from "react";
 import "./styles/globals.css";
+import GeneralProvider from "./components/GeneralProvider";
+import Navbar from "./components/Navbar";
 
 export const metadata: Metadata = {
     title: "Twitter Clone",
@@ -10,7 +12,14 @@ export const metadata: Metadata = {
 const RootLayout = ({ children }: { children: ReactNode }) => {
     return (
         <html lang="en">
-            <body>{children}</body>
+            <body>
+                <GeneralProvider>
+                    <div className="container">
+                        <Navbar />
+                        {children}
+                    </div>
+                </GeneralProvider>
+            </body>
         </html>
     );
 };
