@@ -5,7 +5,8 @@ import { authOptions } from "../auth/[...nextauth]/route";
 const prisma = new PrismaClient();
 
 export const POST = async (req: Request) => {
-    const { content }: { content: string } = await req.json();
+    const { content, imageKeys }: { content: string; imageKeys: string[] } =
+        await req.json();
     const session = await getServerSession(authOptions);
 
     if (!session) {
@@ -15,10 +16,13 @@ export const POST = async (req: Request) => {
         });
     }
 
+    console.log(imageKeys);
+
     const tweet = await prisma.tweet.create({
         data: {
             userId: session.user.id,
             content: content,
+            images: imageKeys,
         },
     });
 

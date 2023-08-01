@@ -16,7 +16,13 @@
     @apply bg-gray-800 text-white button;
 }
 
+/* Container */
 .container {
     @apply w-full h-screen max-w-screen-lg mx-auto grid;
     grid-template-columns: 1fr 3fr;
+}
+
+/* Error */
+.error {
+    @apply block my-2 text-red-600 font-semibold;
 }

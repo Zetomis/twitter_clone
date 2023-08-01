@@ -6,5 +6,7 @@ namespace NodeJS {
         GOOGLE_CLIENT_SECRET: string;
         DISCORD_CLIENT_ID: string;
         DISCORD_CLIENT_SECRET: string;
+        UPLOADTHING_SECRET: string;
+        UPLOADTHING_APP_ID: string;
     }
 }
